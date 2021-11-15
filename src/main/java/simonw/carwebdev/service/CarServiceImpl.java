@@ -40,9 +40,9 @@ public class CarServiceImpl implements CarService {
 	}
 	
 	@Override
-	public Car updateCar(Car updatedCar) throws CarNotFoundException{
+	public void updateCar(Car updatedCar) throws CarNotFoundException{
 		if (carRespository.existsById(updatedCar.getId())) {
-			return carRespository.save(updatedCar);
+			carRespository.save(updatedCar);
 		} else {
 			throw new CarNotFoundException("Car with Id " + updatedCar.getId() + " not found in database.");
 		}

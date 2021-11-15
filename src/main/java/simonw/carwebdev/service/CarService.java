@@ -11,5 +11,5 @@ public interface CarService {
 	
 	void deleteCarById(Long id);
 	
-	Car updateCar(Car updatedCar) throws CarNotFoundException;
+	void updateCar(Car updatedCar) throws CarNotFoundException;
 }
