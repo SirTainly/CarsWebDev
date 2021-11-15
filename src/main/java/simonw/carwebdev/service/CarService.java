@@ -10,4 +10,6 @@ public interface CarService {
 	Car getCarById(Long id) throws CarNotFoundException;
 	
 	void deleteCarById(Long id);
+	
+	Car updateCar(Car updatedCar) throws CarNotFoundException;
 }

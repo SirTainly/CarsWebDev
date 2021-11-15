@@ -28,13 +28,23 @@ public class CarServiceImpl implements CarService {
 	public Car getCarById(Long id) throws CarNotFoundException{
 		Optional<Car> car = carRespository.findById(id);
 		if (car.isEmpty()) {
-			throw new CarNotFoundException("Id " + id + " not found in database.");
+			throw new CarNotFoundException("Car with Id " + id + " not found in database.");
 		}
 		return car.get();
 	}
 
+
 	@Override
 	public void deleteCarById(Long id) {
 		carRespository.deleteById(id);		
+	}
+	
+	@Override
+	public Car updateCar(Car updatedCar) throws CarNotFoundException{
+		if (carRespository.existsById(updatedCar.getId())) {
+			return carRespository.save(updatedCar);
+		} else {
+			throw new CarNotFoundException("Car with Id " + updatedCar.getId() + " not found in database.");
+		}
 	}
 }

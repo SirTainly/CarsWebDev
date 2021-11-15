@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import simonw.carwebdev.model.Car;
 import simonw.carwebdev.service.CarService;
 
 @RestController
+@RequestMapping("cars")
 public class CarController {
 	
 	private CarService carService;
@@ -32,7 +34,7 @@ public class CarController {
 	
 
 	@GetMapping(value = "/{carId}", produces = "application/json")	
-	public Car getCar(@PathVariable Long carId) throws CarNotFoundException {		
+	public Car retrieveCar(@PathVariable Long carId) throws CarNotFoundException {		
 		return carService.getCarById(carId);
 	}
 	
@@ -46,5 +48,4 @@ public class CarController {
 	void onCarNotFoundException(CarNotFoundException exception) {
 	    // TODO get message into body
 	}
-	
 }
